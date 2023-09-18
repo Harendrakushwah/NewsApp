@@ -1,14 +1,15 @@
 //@ts-nocheck
 
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import { NewsData } from '../utils/types'
+import { ComponentNavigationProps, NewsData } from '../utils/types'
 import React, {useState} from 'react'
 import { Appbar, Chip, Button} from 'react-native-paper'
 import { useTheme } from 'react-native-paper'
 import CardItem from '../components/Navigation/CardItem'
 const categories = ["Technology", "Entertainment", "Business", "Sports", "Politics"]
 const API_KEY = "pub_29471ceceef3a5920a8e268703dabeff94f85"
-const Home = () => {
+
+const Home = (props: ComponentNavigationProps) => {
   const [newsData, setNewsData] = useState<NewsData[]>([]);
   const theme = useTheme();
   const [selectedCategories, setselectedCategories] = useState([]);
@@ -61,6 +62,7 @@ const Home = () => {
      data={newsData} 
      renderItem={({item}) => (
      <CardItem 
+     navigation={props.navigation}
      category={item.category} 
      content={item.content} 
      country={item.country}
