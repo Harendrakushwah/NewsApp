@@ -1,4 +1,4 @@
-import { Dimensions, View } from 'react-native'
+import { Dimensions, ScrollView, View } from 'react-native'
 import React from 'react'
 import { Card, Text, useTheme} from "react-native-paper"
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
 const DetailsCard = (props: Props) => {
     const theme = useTheme();
   return (
-    <View>
+    <ScrollView>
       <Text 
         style={{ color: "black", marginVertical: 10 }}
         variant='headlineMedium'>
@@ -27,7 +27,7 @@ const DetailsCard = (props: Props) => {
                 </Text>
                </Card.Content>
             </Card>
-    </View>
+    </ScrollView>
   )
 }
 

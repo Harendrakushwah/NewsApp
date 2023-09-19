@@ -2,7 +2,7 @@
 import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { NewsData } from '../../utils/types';
-import { Card, useTheme } from 'react-native-paper'
+import { Button, Card, useTheme } from 'react-native-paper'
 import { NavigationProp } from '@react-navigation/native';
 import NewsOverview from '../../Screens/NewsOverview';
 type Props = {
@@ -11,7 +11,9 @@ type Props = {
   description: string
   content: string
   navigation: NavigationProp<Route>
-}
+  handleDelete? : (val: string) => void;
+};
+
 const CardItem = (props: Props) => {
     const theme = useTheme()
     const handlePress = () => {
@@ -26,8 +28,12 @@ const CardItem = (props: Props) => {
     <Card style={{marginVertical: 10, backgroundColor:theme.colors.elevation.level5}}>
     <Card.Cover borderRadius={10} source={{uri: props.image_url}} />
     <Card.Title title={props.title} subtitle={props.description.split("\n")[0]} titleNumberOfLines={1}></Card.Title>
+    { props.handleDelete && (<Card.Actions>
+      <Button onPress={() => props.handleDelete && props.handleDelete(props.title)}>Delete</Button>
+    </Card.Actions>
+    )}
     </Card>
-  </Pressable>
+  </Pressable> 
 }
 
 export default CardItem
